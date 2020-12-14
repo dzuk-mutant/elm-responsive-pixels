@@ -36,7 +36,7 @@ This gives you the easy to reason about unit of a pixel, but
 allows you to publish in rems, which is a responsive
 format that scales to user's browser font size preference.
 
-- 1rpx = 1px at 100% zoom and 16pt (default) browser font size.
+- 1rpx = 1px at 16px (default) browser font size.
 - 1rpx = 1/16rem
 
 ```
@@ -52,7 +52,7 @@ rpx num = rem <| num/16
 A measurement that's 8rpx (0.5rem). This is a handy shorthand if you're
 doing layout measurements in multiples of 8.
 
-- 1blc = 8px at 100% zoom and 16pt (default) browser font size.
+- 1blc = 8px at 16px (default) browser font size.
 - 1blc = 1/2rem
 
 ```
