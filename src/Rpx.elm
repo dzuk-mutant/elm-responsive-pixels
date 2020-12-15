@@ -1,4 +1,4 @@
-module Rpx exposing (rpx, blc)
+module Rpx exposing (rpx, blc, add, subtract, negate)
 
 {-| Provides easy shorthands for designing in rems in elm-css.
 
@@ -20,6 +20,20 @@ Html.label
 All of these produce Css.Rem values for elm-css.
 
 @docs rpx, blc
+
+
+# Convenience math functions
+
+Sometimes in a project you might want to establish consistent
+metrics for certain things across your interface, but because of
+how elm-css measurement values work, you can't use normal math operators
+on Rem values. So these functions let you apply some basic math to Rems.
+
+```
+paddingLeft <| Rpx.subtract focusBorderWidth (blc 6)
+```
+
+@docs add, subtract, negate
 
 -}
 
@@ -63,3 +77,34 @@ blc : Float -> Rem
 blc num = rem <| num/2
 
 
+
+
+{-| Adds one Rem-based value (rem, rpx, blc) to another.
+
+```
+width <| Rpx.add thing (blc 10)
+```
+-}
+add : Rem -> Rem -> Rem
+add a b =
+    rem (a.numericValue + b.numericValue)
+
+{-| Subtracts one Rem-based value (rem, rpx, blc) from another.
+
+```
+paddingLeft <| Rpx.subtract focusBorderWidth (rpx 2)
+```
+-}
+subtract : Rem -> Rem -> Rem
+subtract a b =
+    rem (a.numericValue - b.numericValue)
+
+{-| Negates a Rem value (does the equivalent of Elm Core `Basics.negate`).
+
+```
+marginTop <| Rpx.negate importantMeasurement
+```
+-}
+negate : Rem -> Rem
+negate x =
+    rem (Basics.negate x.numericValue)
