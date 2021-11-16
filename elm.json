@@ -3,7 +3,7 @@
     "name": "dzuk-mutant/elm-responsive-pixels",
     "summary": "Work in pixels while deploying in rems in elm-css.",
     "license": "BSD-3-Clause",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "exposed-modules": [
         "Rpx"
     ],
