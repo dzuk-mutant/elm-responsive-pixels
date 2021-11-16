@@ -34,6 +34,8 @@ This package adds two new measurement functions for use in elm-css.
 
 Both of these functions produce `Css.Rem` values, so they are drop-in replacements for any elm-css property that can accept `Rem` measurements.
 
+This package also includes a few convenience functions for performing math on Rem values when you have consistent metrics across a large interface project.
+
 ---
 
 ## License
