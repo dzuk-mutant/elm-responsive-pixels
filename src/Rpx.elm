@@ -1,4 +1,4 @@
-module Rpx exposing (rpx, blc, add, subtract, negate)
+module Rpx exposing (rpx, blc, add, subtract, multiply, divide, negate)
 
 {-| Provides easy shorthands for designing in rems in elm-css.
 
@@ -33,7 +33,7 @@ on Rem values. So these functions let you apply some basic math to Rems.
 paddingLeft <| Rpx.subtract focusBorderWidth (blc 6)
 ```
 
-@docs add, subtract, negate
+@docs add, subtract, multiply, divide, negate
 
 -}
 
@@ -98,6 +98,31 @@ paddingLeft <| Rpx.subtract focusBorderWidth (rpx 2)
 subtract : Rem -> Rem -> Rem
 subtract a b =
     rem (a.numericValue - b.numericValue)
+
+
+{-| Multiplies one Rem-based value (rem, rpx, blc) by a Float value.
+
+```
+    width <| Rpx.multply cellWidth 3
+```
+-}
+multiply : Rem -> Float -> Rem
+multiply a num =
+    rem (a.numericValue * num)
+
+
+{-| Divides one Rem-based value (rem, rpx, blc) by a Float value.
+
+```
+    width <| Rpx.divide (blc 100) 10 -- 10blcs
+```
+-}
+divide : Rem -> Float -> Rem
+divide a num =
+    rem (a.numericValue / num)
+
+
+
 
 {-| Negates a Rem value (does the equivalent of Elm Core `Basics.negate`).
 
