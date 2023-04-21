@@ -1,10 +1,12 @@
 # Responsive Pixels
 
+**Note: This package is now based on the dzuk-mutant fork of elm-css, not the original elm-css package.**
+
 ```
 Html.label
     [ class "label"
     , for id
-    , css   [ displayFlex
+    , css   [ display flex_
             , boxSizing borderBox
             , minHeight (blc 3) -- 1.5 rems, or 24px at 'normal' font size.
             , paddingTop (rpx 1) -- 0.0625 rems, or 1px at 'normal' font size.
@@ -32,9 +34,7 @@ This package adds two new measurement functions for use in elm-css.
 - `rpx` - **Responsive Pixel**, which is equivalent to 1px on a display at standard zoom/text size. (1/16 rems)
 - `blc` - **Block**, equivalent to 8rpx. Useful when creating layouts in multiples of 8. (1/2 rems)
 
-Both of these functions produce `Css.Rem` values, so they are drop-in replacements for any elm-css property that can accept `Rem` measurements.
-
-This package also includes a few convenience functions for performing math on Rem values when you have consistent metrics across a large interface project.
+Both of these functions produce `Value { rem : Supported }` values, so they are drop-in replacements for any elm-css property that can accept rem measurements (usually `Length`/`LengthSupported`).
 
 ---
 

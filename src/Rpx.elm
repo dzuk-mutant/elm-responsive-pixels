@@ -1,4 +1,4 @@
-module Rpx exposing (rpx, blc, add, subtract, multiply, divide, negate)
+module Rpx exposing (rpx, blc)
 
 {-| Provides easy shorthands for designing in rems in elm-css.
 
@@ -21,23 +21,10 @@ All of these produce Css.Rem values for elm-css.
 
 @docs rpx, blc
 
-
-# Convenience math functions
-
-Sometimes in a project you might want to establish consistent
-metrics for certain things across your interface, but because of
-how elm-css measurement values work, you can't use normal math operators
-on Rem values. So these functions let you apply some basic math to Rems.
-
-```
-paddingLeft <| Rpx.subtract focusBorderWidth (blc 6)
-```
-
-@docs add, subtract, multiply, divide, negate
-
 -}
 
-import Css exposing (Rem, rem)
+import Css exposing (rem)
+import Css.Value exposing (Value, Supported)
 
 
 
@@ -57,7 +44,7 @@ format that scales to user's browser font size preference.
 fontSize (rpx 14)
 ```
 -}
-rpx : Float -> Rem
+rpx : Float -> Value { rem : Supported }
 rpx num = rem <| num/16
 
 
@@ -73,63 +60,5 @@ doing layout measurements in multiples of 8.
 padding (blc 2)
 ```
 -}
-blc : Float -> Rem
+blc : Float -> Value { rem : Supported }
 blc num = rem <| num/2
-
-
-
-
-{-| Adds one Rem-based value (rem, rpx, blc) to another.
-
-```
-width <| Rpx.add thing (blc 10)
-```
--}
-add : Rem -> Rem -> Rem
-add a b =
-    rem (a.numericValue + b.numericValue)
-
-{-| Subtracts one Rem-based value (rem, rpx, blc) from another.
-
-```
-paddingLeft <| Rpx.subtract focusBorderWidth (rpx 2)
-```
--}
-subtract : Rem -> Rem -> Rem
-subtract a b =
-    rem (a.numericValue - b.numericValue)
-
-
-{-| Multiplies one Rem-based value (rem, rpx, blc) by a Float value.
-
-```
-    width <| Rpx.multply cellWidth 3
-```
--}
-multiply : Rem -> Float -> Rem
-multiply a num =
-    rem (a.numericValue * num)
-
-
-{-| Divides one Rem-based value (rem, rpx, blc) by a Float value.
-
-```
-    width <| Rpx.divide (blc 100) 10 -- 10blcs
-```
--}
-divide : Rem -> Float -> Rem
-divide a num =
-    rem (a.numericValue / num)
-
-
-
-
-{-| Negates a Rem value (does the equivalent of Elm Core `Basics.negate`).
-
-```
-marginTop <| Rpx.negate importantMeasurement
-```
--}
-negate : Rem -> Rem
-negate x =
-    rem (Basics.negate x.numericValue)
