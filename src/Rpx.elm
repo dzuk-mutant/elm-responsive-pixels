@@ -44,7 +44,7 @@ format that scales to user's browser font size preference.
 fontSize (rpx 14)
 ```
 -}
-rpx : Float -> Value { rem : Supported }
+rpx : Float -> Value { provides | rem : Supported }
 rpx num = rem <| num/16
 
 
@@ -60,5 +60,5 @@ doing layout measurements in multiples of 8.
 padding (blc 2)
 ```
 -}
-blc : Float -> Value { rem : Supported }
+blc : Float -> Value { provides | rem : Supported }
 blc num = rem <| num/2
